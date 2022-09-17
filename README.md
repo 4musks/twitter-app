@@ -2,7 +2,7 @@
 
 ## Available Scripts
 
-In start the project in development mode, you can run:
+To start the project in development mode, you can run:
 
 ### `npm install`
 
