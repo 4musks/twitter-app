@@ -20,13 +20,13 @@ export default function CallbackContainer() {
         if (code) {
           setState({ isLoading: true });
 
-          const response = await login();
+          // const response = await login();
 
-          if (response?.success) {
-            localStorage.setItem(TWITTER_APP_TOKEN);
+          // if (response?.success) {
+          //   localStorage.setItem(TWITTER_APP_TOKEN);
 
-            navigate("/dashboard");
-          }
+          //   navigate("/dashboard");
+          // }
 
           setState({ isLoading: false });
         }

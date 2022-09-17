@@ -1,13 +1,7 @@
 import axios from "axios";
 
-import { TWITTER_APP_TOKEN } from "../utils/config";
-
-const getHeaders = () => ({
-  "x-access-token": localStorage.getItem(TWITTER_APP_TOKEN) || "",
-});
-
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL,
+  baseURL: "http://127.0.0.1:5000/",
   timeout: 60000,
 });
 
@@ -35,28 +29,21 @@ const processError = (error) => {
   throw Exception("Oops! Something went wrong.");
 };
 
-export const login = async (payload) => {
+export const getTweet = async (params) => {
   try {
-    const response = await API.post("/login", payload);
+    const response = await API.get("/getTweet", {
+      params,
+    });
     return response.data;
   } catch (error) {
     return processError(error);
   }
 };
 
-export const getTweets = async (params) => {
+export const createTweet = async (params) => {
   try {
-    const response = await API.get("/tweet", { params, headers: getHeaders() });
-    return response.data;
-  } catch (error) {
-    return processError(error);
-  }
-};
-
-export const createTweet = async (payload) => {
-  try {
-    const response = await API.post("/tweet", payload, {
-      headers: getHeaders(),
+    const response = await API.get("/sendTweet", {
+      params,
     });
     return response.data;
   } catch (error) {
@@ -66,9 +53,8 @@ export const createTweet = async (payload) => {
 
 export const deleteTweet = async (params) => {
   try {
-    const response = await API.delete("/tweet", {
+    const response = await API.get("/deleteTweet", {
       params,
-      headers: getHeaders(),
     });
     return response.data;
   } catch (error) {
